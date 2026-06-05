@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUXE — My Profile</title>
+  <meta name="description" content="View and manage your LUXE profile, orders, and wishlist.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/profile.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">LUXE</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Shop All</a></li>
+    <li><a href="index.html#catalog">New Arrivals</a></li>
+    <li><a href="#">Collections</a></li>
+    <li><a href="profile.html" class="active">Profile</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-search-box">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      Search luxe…
+      <span style="margin-left:auto;font-size:0.7rem;background:var(--gray-200);padding:0.1rem 0.35rem;border-radius:3px;color:var(--gray-500)">⌘K</span>
+    </div>
+    <a href="index.html" class="nav-icon-btn" aria-label="Cart">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+    </a>
+    <a href="profile.html" class="nav-icon-btn" aria-label="Account" style="background:var(--accent-light);border-color:var(--accent)">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+    </a>
+    <button class="mobile-menu-btn" aria-label="Menu" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu">
+  <a href="index.html">Shop All</a>
+  <a href="index.html#catalog">New Arrivals</a>
+  <a href="#">Collections</a>
+  <a href="profile.html" class="active">Profile</a>
+</div>
+
+<!-- PROFILE CONTENT -->
+<div class="profile-page">
+
+  <!-- Profile Header -->
+  <div class="profile-header">
+    <div class="profile-avatar">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+    </div>
+    <div class="profile-header-info">
+      <h1 class="profile-name">Varsha Biswal</h1>
+      <p class="profile-email">varsha@example.com</p>
+      <p class="profile-joined">Member Since January 2024</p>
+    </div>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="profile-stats">
+    <div class="stat-card">
+      <div class="stat-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+          <circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+        </svg>
+      </div>
+      <div class="stat-number">12</div>
+      <div class="stat-label">Orders Placed</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+        </svg>
+      </div>
+      <div class="stat-number">8</div>
+      <div class="stat-label">Wishlist Items</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 01-8 0"/>
+        </svg>
+      </div>
+      <div class="stat-number">3</div>
+      <div class="stat-label">Cart Items</div>
+    </div>
+  </div>
+
+  <!-- Profile Information -->
+  <div class="profile-section">
+    <h2 class="section-title">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      Personal Information
+    </h2>
+    <div class="info-grid">
+      <div class="info-item">
+        <span class="info-label">Full Name</span>
+        <span class="info-value">Varsha Biswal</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Email</span>
+        <span class="info-value">varsha@example.com</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Phone</span>
+        <span class="info-value">+91 98765 43210</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Address</span>
+        <span class="info-value">14, Vasant Vihar</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">City</span>
+        <span class="info-value">New Delhi</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">State</span>
+        <span class="info-value">Delhi</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Pincode</span>
+        <span class="info-value">110057</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Orders -->
+  <div class="profile-section">
+    <h2 class="section-title">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+        <circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+      </svg>
+      Recent Orders
+    </h2>
+    <div class="orders-list">
+      <div class="order-card">
+        <div class="order-card-header">
+          <span class="order-id">Order #1024</span>
+          <span class="order-status delivered">Delivered</span>
+        </div>
+        <div class="order-card-body">
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=200&q=80" alt="Wireless Headphones" class="order-img">
+          <div class="order-details">
+            <div class="order-product-name">Wireless Headphones</div>
+            <div class="order-product-price">₹2,999</div>
+            <div class="order-date">Ordered on Dec 15, 2024</div>
+          </div>
+        </div>
+      </div>
+      <div class="order-card">
+        <div class="order-card-header">
+          <span class="order-id">Order #1025</span>
+          <span class="order-status shipped">Shipped</span>
+        </div>
+        <div class="order-card-body">
+          <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=200&q=80" alt="Mechanical Keyboard" class="order-img">
+          <div class="order-details">
+            <div class="order-product-name">Mechanical Keyboard</div>
+            <div class="order-product-price">₹4,999</div>
+            <div class="order-date">Ordered on Jan 3, 2025</div>
+          </div>
+        </div>
+      </div>
+      <div class="order-card">
+        <div class="order-card-header">
+          <span class="order-id">Order #1026</span>
+          <span class="order-status processing">Processing</span>
+        </div>
+        <div class="order-card-body">
+          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200&q=80" alt="Classic Watch" class="order-img">
+          <div class="order-details">
+            <div class="order-product-name">Classic Watch</div>
+            <div class="order-product-price">₹8,499</div>
+            <div class="order-date">Ordered on Jan 10, 2025</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">LUXE</div>
+      <p>The definitive destination for high-utility, precision-designed products for the modern professional.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Website">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+          </svg>
+        </a>
+        <a href="#" aria-label="Share">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+          </svg>
+        </a>
+        <a href="#" aria-label="Email">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Shipping Info</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Our Craft</a></li>
+        <li><a href="#">Editorial</a></li>
+        <li><a href="#">Sustainability</a></li>
+        <li><a href="#">Stockists</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2024 LUXE Premium Retail. All rights reserved.
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUXE — Product Details</title>
+  <meta name="description" content="View product details, pricing, and add to your cart at LUXE.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/product.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">LUXE</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Shop All</a></li>
+    <li><a href="index.html#catalog">New Arrivals</a></li>
+    <li><a href="#">Collections</a></li>
+    <li><a href="profile.html">Profile</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-search-box">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      Search luxe…
+      <span style="margin-left:auto;font-size:0.7rem;background:var(--gray-200);padding:0.1rem 0.35rem;border-radius:3px;color:var(--gray-500)">⌘K</span>
+    </div>
+    <button class="nav-icon-btn" id="cartBtn" aria-label="Open cart">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+      <span class="cart-badge" id="cartBadge" style="display:none">0</span>
+    </button>
+    <a href="profile.html" class="nav-icon-btn" aria-label="Account">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+    </a>
+    <button class="mobile-menu-btn" aria-label="Menu" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu">
+  <a href="index.html">Shop All</a>
+  <a href="index.html#catalog">New Arrivals</a>
+  <a href="#">Collections</a>
+  <a href="profile.html">Profile</a>
+</div>
+
+<!-- PRODUCT DETAIL -->
+<div class="product-detail-page" id="productDetailPage">
+  <!-- Loading state -->
+  <div class="product-loading" id="productLoading">
+    <div class="spinner"></div>
+    <p>Loading product...</p>
+  </div>
+
+  <!-- Error state -->
+  <div class="product-error" id="productError" style="display:none">
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+    </svg>
+    <h2>Product not found</h2>
+    <p>The product you're looking for doesn't exist or could not be loaded.</p>
+    <a href="index.html" class="btn-primary">Back to Shop</a>
+  </div>
+
+  <!-- Product content (hidden until loaded) -->
+  <div class="product-content" id="productContent" style="display:none">
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="index.html#catalog">Shop</a>
+      <span>›</span>
+      <span class="current" id="breadcrumbName">Product</span>
+    </div>
+
+    <div class="product-layout">
+      <!-- Left: Image -->
+      <div class="product-image-wrap">
+        <div class="product-image-box">
+          <img id="productImage" src="" alt="Product image">
+        </div>
+      </div>
+
+      <!-- Right: Info -->
+      <div class="product-info">
+        <span class="product-detail-category" id="productCategory"></span>
+        <h1 class="product-detail-title" id="productTitle"></h1>
+
+        <div class="product-detail-rating" id="productRating">
+          <span class="stars"></span>
+          <span class="rating-value"></span>
+        </div>
+
+        <div class="product-detail-price" id="productPrice"></div>
+
+        <div class="product-detail-desc" id="productDesc"></div>
+
+        <!-- Quantity Selector -->
+        <div class="quantity-section">
+          <span class="quantity-label">Quantity</span>
+          <div class="quantity-selector">
+            <button class="qty-btn" id="qtyMinus">−</button>
+            <span class="qty-value" id="qtyValue">1</span>
+            <button class="qty-btn" id="qtyPlus">+</button>
+          </div>
+        </div>
+
+        <!-- Add to Cart Button -->
+        <button class="product-add-btn" id="addToCartBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 01-8 0"/>
+          </svg>
+          Add to Cart
+        </button>
+
+        <!-- Product Info Table -->
+        <div class="product-info-table">
+          <div class="info-row">
+            <span class="info-row-label">Category</span>
+            <span class="info-row-value" id="infoCategory"></span>
+          </div>
+          <div class="info-row">
+            <span class="info-row-label">Rating</span>
+            <span class="info-row-value" id="infoRating"></span>
+          </div>
+          <div class="info-row">
+            <span class="info-row-label">Stock</span>
+            <span class="info-row-value" id="infoStock">In Stock</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
+  <div class="cart-header">
+    <div>
+      <div class="cart-title">Your Selection</div>
+      <div class="cart-count-label" id="cartCountLabel">0 Items in Cart</div>
+    </div>
+    <button class="cart-close-btn" id="cartCloseBtn" aria-label="Close cart">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+  <div class="cart-drop-zone" id="cartDropZone"></div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-subtotal">
+      <span class="label">Subtotal</span>
+      <span class="amount" id="cartSubtotal">₹0</span>
+    </div>
+    <div class="cart-shipping">
+      <span>Shipping</span>
+      <span class="shipping-calc">Calculated at next step</span>
+    </div>
+    <a href="checkout.html" class="checkout-btn">Complete Purchase</a>
+  </div>
+</aside>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">LUXE</div>
+      <p>The definitive destination for high-utility, precision-designed products for the modern professional.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Website">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+          </svg>
+        </a>
+        <a href="#" aria-label="Share">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+          </svg>
+        </a>
+        <a href="#" aria-label="Email">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Shipping Info</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Our Craft</a></li>
+        <li><a href="#">Editorial</a></li>
+        <li><a href="#">Sustainability</a></li>
+        <li><a href="#">Stockists</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2024 LUXE Premium Retail. All rights reserved.
+  </div>
+</footer>
+
+<script src="js/api.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/product-detail.js"></script>
+
+</body>
+</html>

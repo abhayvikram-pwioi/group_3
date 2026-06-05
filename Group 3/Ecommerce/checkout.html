@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUXE — Complete Your Order</title>
+  <link rel="stylesheet" href="css/checkout.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<!-- CHECKOUT NAVBAR -->
+<nav class="checkout-nav">
+  <a href="index.html" class="checkout-nav-logo">LUXE</a>
+  <div class="secure-badge">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+      <path d="M7 11V7a5 5 0 0110 0v4"/>
+    </svg>
+    Secure Checkout
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span>›</span>
+  <a href="index.html">Cart</a>
+  <span>›</span>
+  <span class="current">Checkout</span>
+</div>
+
+<!-- CHECKOUT LAYOUT -->
+<div class="checkout-layout">
+
+  <!-- LEFT: FORM -->
+  <div class="checkout-main">
+    <h1>Complete Your Order</h1>
+    <p>Your selected essentials are almost yours.</p>
+
+    <form id="checkoutForm" novalidate>
+
+      <!-- Contact Information -->
+      <div class="form-section">
+        <div class="form-section-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          Contact Information
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="alex@example.com" autocomplete="email">
+          <span class="field-error" id="emailError"></span>
+        </div>
+      </div>
+
+      <!-- Shipping Address -->
+      <div class="form-section">
+        <div class="form-section-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+            <circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+          </svg>
+          Shipping Address
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" placeholder="Alex" autocomplete="given-name">
+            <span class="field-error" id="firstNameError"></span>
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Sterling" autocomplete="family-name">
+            <span class="field-error" id="lastNameError"></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" autocomplete="tel">
+          <span class="field-error" id="phoneError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="address">Street Address</label>
+          <input type="text" id="address" name="address" placeholder="123 Luxury Lane" autocomplete="street-address">
+          <span class="field-error" id="addressError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="apartment">Apartment/Suite (Optional)</label>
+          <input type="text" id="apartment" name="apartment" placeholder="Apt 4B">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" placeholder="Mumbai" autocomplete="address-level2">
+            <span class="field-error" id="cityError"></span>
+          </div>
+          <div class="form-group">
+            <label for="state">State</label>
+            <input type="text" id="state" name="state" placeholder="Maharashtra" autocomplete="address-level1">
+            <span class="field-error" id="stateError"></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="pincode">Postal Code</label>
+          <input type="text" id="pincode" name="pincode" placeholder="400001" autocomplete="postal-code" style="max-width:220px">
+          <span class="field-error" id="pincodeError"></span>
+        </div>
+      </div>
+
+      <!-- Delivery Method -->
+      <div class="form-section">
+        <div class="form-section-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          Delivery Method
+        </div>
+
+        <div class="delivery-options">
+          <div class="delivery-option selected" data-delivery="standard">
+            <div class="check-icon">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <div class="delivery-label">Standard Delivery</div>
+            <div class="delivery-days">3–5 business days</div>
+            <div class="delivery-price">FREE</div>
+          </div>
+
+          <div class="delivery-option" data-delivery="express">
+            <div class="check-icon">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <div class="delivery-label">Express Delivery</div>
+            <div class="delivery-days">1–2 business days</div>
+            <div class="delivery-price">₹499</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment Method -->
+      <div class="form-section">
+        <div class="form-section-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+            <line x1="1" y1="10" x2="23" y2="10"/>
+          </svg>
+          Payment Method
+        </div>
+
+        <div class="payment-tabs">
+          <button type="button" class="payment-tab active" data-method="card">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+              <line x1="1" y1="10" x2="23" y2="10"/>
+            </svg>
+            Card
+          </button>
+          <button type="button" class="payment-tab" data-method="upi">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+              <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+            </svg>
+            UPI
+          </button>
+          <button type="button" class="payment-tab" data-method="netbanking">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+            </svg>
+            Net Banking
+          </button>
+        </div>
+
+        <!-- Card fields -->
+        <div class="payment-fields" id="cardFields">
+          <div class="card-fields">
+            <div class="form-group">
+              <label for="cardNumber">Card Number</label>
+              <div class="card-number-wrap">
+                <input type="text" id="cardNumber" placeholder="0000 0000 0000 0000" maxlength="19">
+                <span class="card-icon">
+                  <svg width="20" height="14" viewBox="0 0 38 24" fill="none">
+                    <rect width="38" height="24" rx="4" fill="#f0f0f0"/>
+                    <rect x="1" y="8" width="15" height="8" rx="1" fill="#e4e4e4"/>
+                  </svg>
+                </span>
+              </div>
+              <span class="field-error" id="cardNumberError"></span>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="expiryDate">Expiry Date</label>
+                <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5">
+                <span class="field-error" id="expiryDateError"></span>
+              </div>
+              <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" placeholder="***" maxlength="3">
+                <span class="field-error" id="cvvError"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- UPI fields -->
+        <div class="payment-fields" id="upiFields" style="display:none">
+          <div class="form-group">
+            <label for="upiId">UPI ID</label>
+            <input type="text" id="upiId" placeholder="yourname@upi">
+          </div>
+        </div>
+
+        <!-- Net Banking fields -->
+        <div class="payment-fields" id="netbankingFields" style="display:none">
+          <div class="form-group">
+            <label for="bankSelect">Select Bank</label>
+            <input type="text" id="bankSelect" placeholder="e.g. HDFC, SBI, ICICI">
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Place Order -->
+      <div class="place-order-section">
+        <button type="submit" class="place-order-btn">
+          Place Order · <span id="placeOrderTotal">₹0</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </button>
+        <p class="order-terms">By clicking "Place Order", you agree to our <a href="#">Terms of Service</a>.</p>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- RIGHT: ORDER SUMMARY -->
+  <aside class="order-summary">
+    <h3>Your Order</h3>
+
+    <div class="order-items" id="orderItems">
+      <p style="color:var(--gray-400);font-size:0.85rem">Loading cart…</p>
+    </div>
+
+    <div class="promo-row">
+      <input type="text" class="promo-input" placeholder="Promo Code">
+      <button type="button" class="promo-apply-btn">Apply</button>
+    </div>
+
+    <div class="cost-line">
+      <span>Subtotal</span>
+      <span class="value" id="orderSubtotal">₹0</span>
+    </div>
+    <div class="cost-line">
+      <span>Shipping</span>
+      <span class="free" id="orderShipping">Free</span>
+    </div>
+    <div class="cost-line">
+      <span>Estimated Tax</span>
+      <span class="value">₹0</span>
+    </div>
+    <div class="cost-total">
+      <span>Total</span>
+      <span id="orderTotal">₹0</span>
+    </div>
+
+    <div class="trust-badges">
+      <div class="trust-badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <div class="trust-badge-text">
+          <strong>Secure Checkout</strong>
+          <span>128-bit SSL Encryption</span>
+        </div>
+      </div>
+      <div class="trust-badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+        </svg>
+        <div class="trust-badge-text">
+          <strong>Encrypted Payments</strong>
+          <span>PCI-DSS Compliant</span>
+        </div>
+      </div>
+      <div class="trust-badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/>
+        </svg>
+        <div class="trust-badge-text">
+          <strong>Easy Returns</strong>
+          <span>30-day money-back guarantee</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="checkout-footer">
+  <div class="checkout-footer-inner">
+    <div>
+      <div class="checkout-footer-logo">LUXE</div>
+      <div class="checkout-footer-tagline">Elevating your digital lifestyle with meticulously crafted hardware and curated experiences.</div>
+    </div>
+    <div class="checkout-footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Shipping Info</a>
+      <a href="#">Contact Us</a>
+    </div>
+    <div class="checkout-footer-copy">© 2024 LUXE Premium Retail. All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- SUCCESS MODAL -->
+<div class="modal-overlay" id="successModal">
+  <div class="modal">
+    <div class="modal-icon">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    </div>
+    <h2>Order Confirmed!</h2>
+    <p>Thank you for your purchase. Your essentials are on their way and will arrive within the selected delivery timeframe.</p>
+    <div class="order-id-box">
+      Order ID: <strong id="confirmOrderId">LXE12345678</strong>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-continue" onclick="closeModal()">Continue Shopping</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/checkout.js"></script>
+
+</body>
+</html>
