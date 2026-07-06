@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>
+        Weather + News Dashboard
+    </title>
+
+
+    <meta 
+    name="viewport" 
+    content="width=device-width, initial-scale=1.0"
+    >
+
+
+    <link 
+    rel="stylesheet" 
+    href="./css/style.css"
+    >
+
+
+</head>
+
+
+
+<body>
+
+
+
+<!-- ================= HEADER ================= -->
+
+
+<header>
+
+
+    <h1>
+        🌦 Weather + News Dashboard
+    </h1>
+
+
+
+    <button id="darkBtn">
+
+        🌙
+
+    </button>
+
+
+
+</header>
+
+
+
+
+
+
+
+
+<main>
+
+
+
+<!-- ================= WEATHER SECTION ================= -->
+
+
+
+<section class="weather-section">
+
+
+
+    <h2>
+
+        Weather
+
+    </h2>
+
+
+
+
+
+    <div class="weather-search">
+
+
+
+        <input
+
+        id="cityInput"
+
+        placeholder="Enter city name"
+
+        >
+
+
+
+
+        <button id="weatherBtn">
+
+            Get Weather
+
+        </button>
+
+
+
+    </div>
+
+
+
+
+
+
+    <div id="weatherResult">
+
+
+    </div>
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ================= NEWS SECTION ================= -->
+
+
+
+<section class="news-section">
+
+
+
+    <div class="news-top">
+
+
+
+        <h2>
+
+            Latest News
+
+        </h2>
+
+
+
+
+
+        <input
+
+        id="newsSearch"
+
+        placeholder="Search news topic"
+
+        >
+
+
+
+
+
+
+
+        <select id="category">
+
+
+
+            <option value="technology">
+
+                Technology
+
+            </option>
+
+
+
+
+            <option value="sports">
+
+                Sports
+
+            </option>
+
+
+
+
+            <option value="business">
+
+                Business
+
+            </option>
+
+
+
+
+
+            <option value="health">
+
+                Health
+
+            </option>
+
+
+
+
+
+            <option value="entertainment">
+
+                Entertainment
+
+            </option>
+
+
+
+        </select>
+
+
+
+
+
+
+        <button id="btn">
+
+
+            Get News
+
+
+        </button>
+
+
+
+
+
+    </div>
+
+
+
+    <div id="result">
+
+
+    </div>
+
+
+
+
+</section>
+
+
+
+
+
+
+</main>
+
+
+
+
+
+
+
+
+
+<!-- ================= FOOTER ================= -->
+
+
+
+<footer>
+
+
+    <p>
+
+        Weather + News Dashboard © 2026
+
+    </p>
+
+
+    <p>
+
+        Powered by Open-Meteo API & NewsData.io
+
+    </p>
+
+
+
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+<!-- ================= JS FILES ================= -->
+
+
+
+<script src="./js/weather.js">
+
+</script>
+
+
+
+<script src="./js/news.js">
+
+</script>
+
+
+
+<script src="./js/theme.js">
+
+</script>
+
+
+
+
+</body>
+
+
+</html>
