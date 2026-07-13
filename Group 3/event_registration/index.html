@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EventHub - Event Listing and Registration Platform</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <h1 class="logo">EventHub</h1>
+  </header>
+
+  <div class="container">
+
+    <p class="tagline">Discover events, workshops and activities happening around you.</p>
+
+    <div class="card-box">
+
+      <div class="option-card">
+        <h2>Attendee</h2>
+        <p>Browse events and register to attend them.</p>
+        <button onclick="window.location.href='attendee-login.html'">Login as Attendee</button>
+      </div>
+
+      <div class="option-card">
+        <h2>Admin</h2>
+        <p>Manage events and view event details.</p>
+        <button onclick="window.location.href='admin-login.html'">Login as Admin</button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer class="site-footer">
+    <p>EventHub &copy; 2026</p>
+  </footer>
+
+  <button id="chatToggleBtn">Chat</button>
+
+  <div id="chatPanel" class="chat-panel">
+
+    <div class="chat-header">
+      <span>EventHub Assistant</span>
+      <button id="chatCloseBtn">X</button>
+    </div>
+
+    <div id="chatMessages" class="chat-messages">
+    </div>
+
+    <div class="chat-input-row">
+      <input type="text" id="chatInput" placeholder="Type your question...">
+      <button id="chatSendBtn">Send</button>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

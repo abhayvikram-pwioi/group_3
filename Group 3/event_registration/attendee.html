@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendee Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <h1>Welcome Attendee</h1>
+
+    <div class="filter-bar">
+      <input type="text" id="searchBox" placeholder="Search events...">
+
+      <select id="categoryDropdown">
+        <option value="all">All Categories</option>
+        <option value="technology">Technology</option>
+        <option value="workshop">Workshop</option>
+        <option value="cultural">Cultural</option>
+        <option value="sports">Sports</option>
+        <option value="hackathon">Hackathon</option>
+        <option value="seminar">Seminar</option>
+        <option value="placement">Placement</option>
+        <option value="coding-contest">Coding Contest</option>
+      </select>
+    </div>
+
+    <div class="event-cards" id="eventCardsContainer">
+    </div>
+
+    <h2>My Events</h2>
+
+    <div class="event-cards" id="myEventsContainer">
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
