@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Varsha Biswal",
+    "initials": "VB",
+    "username": "varsha",
+    "password": "vb123"
+  },
+  {
+    "id": 2,
+    "name": "Ayan",
+    "initials": "AY",
+    "username": "ayan",
+    "password": "ay123"
+  },
+  {
+    "id": 3,
+    "name": "Krishna Sahu",
+    "initials": "KS",
+    "username": "krishna",
+    "password": "ks123"
+  }
+]
