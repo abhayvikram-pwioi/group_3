@@ -1,0 +1,166 @@
+/* 
+  ========================================
+  Authentication Page Specific Styles
+  This file styles the index.html (Login/Signup) view.
+  ========================================
+*/
+
+/* Container splitting the screen in half on desktop */
+.auth-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--surface);
+}
+
+/* Left side: The actual authentication form */
+.auth-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.auth-header {
+    margin-bottom: 2.5rem;
+}
+
+.auth-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: -1px;
+}
+
+/* Form Layout */
+#auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Input Fields styling */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-group label {
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: var(--text-primary);
+}
+
+.input-group input {
+    padding: 0.875rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.2s;
+    background-color: var(--background);
+    color: var(--text-primary);
+}
+
+.input-group input:focus {
+    border-color: var(--primary);
+    /* Accessibility: clear visual indicator on focus */
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1); 
+}
+
+#submit-btn {
+    margin-top: 1rem;
+    padding: 1rem;
+    font-size: 1.125rem;
+}
+
+/* Error message styling */
+.error-message {
+    color: var(--danger);
+    font-size: 0.875rem;
+    min-height: 20px; /* Reserve space so UI doesn't jump when error appears */
+}
+
+/* Toggle link between Login and Signup */
+.auth-toggle {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.text-btn {
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0;
+}
+
+.text-btn:hover {
+    text-decoration: underline;
+}
+
+/* 
+  Right side: Visual Marketing Section
+  Features a gradient background and glassmorphism elements
+*/
+.auth-visual {
+    flex: 1;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    position: relative;
+    overflow: hidden; /* Ensure absolute shapes stay inside */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem;
+}
+
+.visual-content {
+    position: relative;
+    z-index: 2; /* Sit on top of shapes */
+    color: white;
+    text-align: center;
+    max-width: 400px;
+}
+
+.visual-content h1 {
+    color: white;
+    font-size: 3rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+}
+
+.visual-content p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.125rem;
+    line-height: 1.6;
+}
+
+/* Decorative background shapes utilizing Backdrop-Filter */
+.glass-shape {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Positioning the shapes randomly for a modern aesthetic */
+.shape-1 { width: 400px; height: 400px; top: -100px; right: -100px; }
+.shape-2 { width: 300px; height: 300px; bottom: -50px; left: -100px; }
+.shape-3 { width: 150px; height: 150px; bottom: 200px; right: 100px; }
+
+/* Mobile Responsiveness: Hide the visual side on smaller screens */
+@media (max-width: 900px) {
+    .auth-visual {
+        display: none;
+    }
+    .auth-card {
+        padding: 2rem;
+    }
+}

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Outfit font for a more modern, premium minimalist SaaS branding -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Chart.js loaded via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dashboard-body">
+    
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay" role="alert" aria-busy="true">
+        <div class="spinner"></div>
+        <p>Loading Dashboard...</p>
+    </div>
+
+    <!-- Mobile Navigation Backdrop -->
+    <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar" aria-label="Main Navigation">
+        <header class="sidebar-header">
+            <h2>LearnDash</h2>
+            <button id="close-mobile-menu" class="btn-icon mobile-only" aria-label="Close menu">&times;</button>
+        </header>
+        
+        <ul class="nav-links">
+            <li class="nav-item active" data-tab="dashboard">
+                <a href="#" class="nav-link"><i class="icon">📊</i> Dashboard</a>
+            </li>
+            <li class="nav-item" data-tab="courses">
+                <a href="#" class="nav-link"><i class="icon">📚</i> Courses</a>
+            </li>
+            <li class="nav-item" data-tab="grades">
+                <a href="#" class="nav-link"><i class="icon">📈</i> Grades</a>
+            </li>
+            <li class="nav-item" data-tab="settings">
+                <a href="#" class="nav-link"><i class="icon">⚙️</i> Settings</a>
+            </li>
+        </ul>
+        
+        <footer class="sidebar-footer">
+            <button id="logout-btn" class="btn btn-outline">Log Out</button>
+        </footer>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="dashboard-content">
+        <!-- Top Navigation Bar -->
+        <header class="top-nav">
+            <div class="top-nav-left">
+                <!-- Mobile Hamburger Toggle Button -->
+                <button id="mobile-menu-toggle" class="btn-icon mobile-only" aria-label="Open navigation menu">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                
+                <!-- Live Search Bar -->
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search..." aria-label="Search courses">
+                </div>
+            </div>
+            
+            <!-- User Profile (Theme toggle is now cleaner and integrated into settings) -->
+            <div class="top-nav-right">
+                <div class="user-profile">
+                    <div class="avatar" id="user-avatar">U</div>
+                    <div class="user-info">
+                        <span class="user-name" id="user-name">Loading...</span>
+                        <span class="user-email" id="user-email">...</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dynamic Tab Views Container -->
+        <div class="tab-views">
+            
+            <!-- VIEW 1: DASHBOARD TAB -->
+            <div id="view-dashboard" class="tab-view active">
+                
+                <!-- Summary Metrics Section -->
+                <section class="summary-section" aria-label="Overall Metrics">
+                    <article class="summary-card glass-card">
+                        <h3>Overall Completion</h3>
+                        <div class="progress-circle" id="overall-progress-circle">
+                            <span class="progress-text" id="overall-progress-text">0%</span>
+                        </div>
+                    </article>
+                    
+                    <article class="summary-card glass-card">
+                        <h3>Active Courses</h3>
+                        <div class="stat-value" id="active-courses-count">0</div>
+                    </article>
+                    
+                    <article class="summary-card glass-card">
+                        <h3>Pending Modules</h3>
+                        <div class="stat-value" id="pending-modules-count">0</div>
+                    </article>
+                </section>
+
+                <!-- Enrolled Courses Section -->
+                <section class="courses-section" aria-label="Enrolled Courses">
+                    <div class="section-header">
+                        <h2>Enrolled Courses</h2>
+                        <button id="open-add-course-btn" class="btn btn-primary">+ Add Course</button>
+                    </div>
+
+                    <!-- Filter Chips -->
+                    <div class="filter-chips">
+                        <button class="chip active" data-filter="all">All</button>
+                        <button class="chip" data-filter="in-progress">In Progress</button>
+                        <button class="chip" data-filter="completed">Completed</button>
+                    </div>
+                    
+                    <!-- Empty State -->
+                    <div id="empty-state" class="empty-state glass-card" style="display: none;">
+                        <h3>No enrolled courses found</h3>
+                        <p>Click "+ Add Course" to enroll in a new course.</p>
+                    </div>
+                    
+                    <!-- Course Cards Container -->
+                    <div class="courses-grid" id="courses-container">
+                        <!-- Cards are dynamically injected via js/dashboard.js -->
+                    </div>
+                </section>
+
+                <!-- Grade & Performance Visualizations Section -->
+                <section class="charts-section" aria-label="Analytics Overview">
+                    <article class="chart-container glass-card">
+                        <h2>Grade Performance</h2>
+                        <canvas id="gradesBarChart" aria-label="Grade Performance Bar Chart"></canvas>
+                    </article>
+                    
+                    <article class="chart-container glass-card">
+                        <h2>Weekly Progress</h2>
+                        <canvas id="progressLineChart" aria-label="Weekly Progress Line Chart"></canvas>
+                    </article>
+                    
+                    <article class="chart-container glass-card">
+                        <h2>Attendance Record</h2>
+                        <div style="max-width: 260px; margin: 0 auto;">
+                            <canvas id="attendanceDoughnutChart" aria-label="Attendance Doughnut Chart"></canvas>
+                        </div>
+                    </article>
+                </section>
+            </div>
+
+            <!-- VIEW 2: COURSES TAB (Dedicated Course Management) -->
+            <div id="view-courses" class="tab-view">
+                <section class="courses-section">
+                    <div class="section-header">
+                        <div>
+                            <h2>All Courses</h2>
+                            <p class="subtitle">Manage your enrolled courses, modules, and completion progress.</p>
+                        </div>
+                        <button id="open-add-course-btn-2" class="btn btn-primary">+ Add Course</button>
+                    </div>
+                    
+                    <div class="courses-grid" id="courses-container-tab">
+                        <!-- Re-rendered course cards -->
+                    </div>
+                </section>
+            </div>
+
+            <!-- VIEW 3: GRADES TAB (Detailed Analytics & Grade Breakdown) -->
+            <div id="view-grades" class="tab-view">
+                <section class="grades-tab-section">
+                    <h2>Academic Performance</h2>
+                    <p class="subtitle">Detailed breakdown of assessments and class attendance.</p>
+
+                    <div class="charts-section" style="margin-top: 1.5rem;">
+                        <article class="chart-container glass-card">
+                            <h3>Quiz & Assignment Scores</h3>
+                            <canvas id="gradesBarChartDetailed"></canvas>
+                        </article>
+                        
+                        <article class="chart-container glass-card">
+                            <h3>Attendance Summary</h3>
+                            <div style="max-width: 250px; margin: 0 auto;">
+                                <canvas id="attendanceDoughnutChartDetailed"></canvas>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Grade Table -->
+                    <article class="glass-card" style="margin-top: 2rem;">
+                        <h3>Assessment Results</h3>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Assessment Name</th>
+                                        <th>Category</th>
+                                        <th>Score</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="grade-table-body">
+                                    <!-- Populated statically/mocked -->
+                                    <tr><td>Quiz 1: HTML & CSS</td><td>Tech</td><td>85%</td><td><span class="status-badge completed">Passed</span></td></tr>
+                                    <tr><td>Assignment 1: Responsive Layouts</td><td>Tech</td><td>92%</td><td><span class="status-badge completed">Passed</span></td></tr>
+                                    <tr><td>Midterm: JavaScript Logic</td><td>Tech</td><td>78%</td><td><span class="status-badge completed">Passed</span></td></tr>
+                                    <tr><td>Quiz 2: Data Science Methods</td><td>Science</td><td>95%</td><td><span class="status-badge completed">Passed</span></td></tr>
+                                    <tr><td>Final Project: SaaS Dashboard</td><td>Tech</td><td>88%</td><td><span class="status-badge completed">Passed</span></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </article>
+                </section>
+            </div>
+
+            <!-- VIEW 4: SETTINGS TAB (New Minimalist Settings Page) -->
+            <div id="view-settings" class="tab-view">
+                <section class="settings-section">
+                    <h2>Settings</h2>
+                    <p class="subtitle">Customize your profile, system preferences, and manage database state.</p>
+
+                    <div class="settings-grid" style="margin-top: 2rem; display: flex; flex-direction: column; gap: 2rem;">
+                        <!-- Profile Card -->
+                        <article class="glass-card">
+                            <h3>Profile Settings</h3>
+                            <form id="settings-profile-form" style="margin-top: 1rem; max-width: 400px;">
+                                <div class="input-group">
+                                    <label for="settings-name-input">Display Name</label>
+                                    <input type="text" id="settings-name-input" required placeholder="e.g. Marie Curie">
+                                </div>
+                                <button type="submit" class="btn btn-primary" id="save-profile-btn" style="margin-top: 0.5rem;">Save Settings</button>
+                                <span id="profile-success-msg" class="success-message" style="margin-left: 1rem; display: none;">Changes saved!</span>
+                            </form>
+                        </article>
+
+                        <!-- Preferences Card -->
+                        <article class="glass-card">
+                            <h3>Appearance Settings</h3>
+                            <div class="settings-row" style="margin-top: 1rem; display: flex; align-items: center; justify-content: space-between; max-width: 400px;">
+                                <span>Dark Mode Preference</span>
+                                <select id="settings-theme-select" class="custom-select" style="min-width: 120px;">
+                                    <option value="light">Light Mode</option>
+                                    <option value="dark">Dark Mode</option>
+                                </select>
+                            </div>
+                        </article>
+
+                        <!-- Danger Zone Card -->
+                        <article class="glass-card danger-zone-card" style="border-color: rgba(239, 68, 68, 0.2);">
+                            <h3 style="color: var(--danger);">Danger Zone</h3>
+                            <p style="margin-top: 0.5rem;">Purge and re-seed the Firestore database back to original defaults.</p>
+                            <button id="reset-database-btn" class="btn btn-danger" style="margin-top: 1rem;">Reset Database State</button>
+                        </article>
+                    </div>
+                </section>
+            </div>
+            
+        </div>
+    </main>
+
+    <!-- MODAL 1: Add New Course -->
+    <div id="add-course-modal" class="modal-backdrop" style="display: none;">
+        <div class="modal-card glass-card">
+            <div class="modal-header">
+                <h3>Add New Course</h3>
+                <button class="close-modal-btn" data-close="add-course-modal">&times;</button>
+            </div>
+            <form id="add-course-form">
+                <div class="input-group">
+                    <label for="course-title-input">Course Title</label>
+                    <input type="text" id="course-title-input" required placeholder="e.g. Mobile App Development">
+                </div>
+                <div class="input-group">
+                    <label for="course-instructor-input">Instructor Name</label>
+                    <input type="text" id="course-instructor-input" required placeholder="e.g. Prof. Alan Turing">
+                </div>
+                <div class="input-group">
+                    <label for="course-category-select">Category</label>
+                    <select id="course-category-select" class="custom-select">
+                        <option value="tech">Tech & Software</option>
+                        <option value="science">Data & Science</option>
+                        <option value="design">UI/UX & Design</option>
+                        <option value="math">Mathematics & Logic</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="course-modules-input">Total Modules</label>
+                    <input type="number" id="course-modules-input" required min="1" max="50" value="10">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" data-close="add-course-modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="save-course-btn">Save Course</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 2: Manage Course / Update Progress -->
+    <div id="manage-course-modal" class="modal-backdrop" style="display: none;">
+        <div class="modal-card glass-card">
+            <div class="modal-header">
+                <h3 id="manage-course-title">Manage Course</h3>
+                <button class="close-modal-btn" data-close="manage-course-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="manage-course-instructor" class="instructor" style="margin-bottom: 1rem;"></p>
+                
+                <div class="module-counter-box">
+                    <span class="label">Completed Modules:</span>
+                    <div class="counter-controls">
+                        <button id="decrement-module-btn" class="btn-counter">-</button>
+                        <span id="manage-modules-count" class="count-value">0</span>
+                        <button id="increment-module-btn" class="btn-counter">+</button>
+                    </div>
+                </div>
+
+                <div class="progress-container" style="margin-top: 1.5rem;">
+                    <div class="progress-header">
+                        <span>Updated Progress</span>
+                        <span id="manage-progress-text">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div id="manage-progress-fill" class="progress-fill" style="width: 0%;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="justify-content: space-between;">
+                <button id="delete-course-btn" class="btn btn-danger">Delete Course</button>
+                <div>
+                    <button type="button" class="btn btn-outline" data-close="manage-course-modal">Close</button>
+                    <button id="save-progress-btn" class="btn btn-primary">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDKs and App Logic -->
+    <script type="module" src="js/firebase.js"></script>
+    <script type="module" src="js/dashboard.js"></script>
+</body>
+</html>

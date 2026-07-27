@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic Meta Tags for Character Encoding and Responsive Viewport -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Progress Tracker - Login</title>
+    
+    <!-- Preconnect to Google Fonts for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Importing the 'Inter' font, standard in modern SaaS dashboards -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Linking our custom stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <!-- Main container holding the entire authentication view -->
+    <main class="auth-container">
+        
+        <!-- Left Section: Authentication Form (Login/Signup) -->
+        <section class="auth-card" aria-label="Authentication Form">
+            <header class="auth-header">
+                <h2>Welcome Back</h2>
+                <p>Log in to track your learning progress.</p>
+            </header>
+            
+            <!-- The Form element handles both Login and Signup based on the JS state -->
+            <form id="auth-form" aria-live="polite">
+                <!-- Input Group: Email -->
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required placeholder="student@example.com" aria-required="true">
+                </div>
+                
+                <!-- Input Group: Password -->
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <!-- minlength="6" is a standard Firebase Auth requirement -->
+                    <input type="password" id="password" required minlength="6" placeholder="••••••••" aria-required="true">
+                </div>
+                
+                <!-- Container to display Firebase Authentication errors -->
+                <div id="auth-error" class="error-message" role="alert"></div>
+                
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary" id="submit-btn">Sign In</button>
+            </form>
+            
+            <!-- Toggle between Login and Sign Up modes -->
+            <div class="auth-toggle">
+                <p>Don't have an account? <button class="text-btn" id="toggle-mode">Sign Up</button></p>
+            </div>
+        </section>
+        
+        <!-- Right Section: Visual Marketing / Branding -->
+        <aside class="auth-visual" aria-hidden="true">
+            <!-- Decorative glassmorphism shapes -->
+            <div class="glass-shape shape-1"></div>
+            <div class="glass-shape shape-2"></div>
+            <div class="glass-shape shape-3"></div>
+            
+            <!-- Branding Text -->
+            <div class="visual-content">
+                <h1>Elevate Your Learning Journey</h1>
+                <p>Track progress, visualize grades, and stay ahead of your coursework all in one place.</p>
+            </div>
+        </aside>
+    </main>
+
+    <!-- 
+      Firebase SDK loaded via standard ES Modules. 
+      Using type="module" ensures these scripts run securely in a modular scope.
+    -->
+    <script type="module" src="js/firebase.js"></script>
+    <script type="module" src="js/auth.js"></script>
+</body>
+</html>
